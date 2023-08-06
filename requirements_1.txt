@@ -1,0 +1,20 @@
+This file shows all the steps i followed to reach my goal: To buil a pipeline from Kafka to spark process, orchestrating the pipeline by airflow.
+
+1 . To set up a docker container to run spark and airflow i follow the article bellow:
+https://medium.com/codex/airflow-and-spark-running-spark-jobs-on-airflow-docker-based-solution-fc6cc8794c9b
+
+2. To set up a kafka env and publish my messages i follow the steps:
+f4c383ac48678b1a5ed6373d01cda7ef2bfb0239e8d56803cdd3d2d5f459bed4
+
+docker network create kafka-network
+docker pull confluentinc/cp-kafka
+docker run -d \
+  --name=kafka \
+  --network=kafka-network \
+  -e KAFKA_BROKER_ID=1 \
+  -e KAFKA_LISTENERS=PLAINTEXT://kafka:9092 \
+  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://your_host_ip:9092 \
+  -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
+  confluentinc/cp-kafka
+
+docker ps
